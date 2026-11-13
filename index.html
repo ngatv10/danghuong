@@ -299,7 +299,7 @@
 
 
   <!-- Khu vực Bàn Thờ trung tâm -->
-  <main class="relative flex flex-col items-center justify-end flex-grow w-full max-w-2xl z-10 pb-2">
+  <main class="relative flex flex-col items-center justify-end flex-grow w-full max-w-2xl z-10">
 
     <!-- Vòng hào quang đa lớp phía sau Phật -->
     <div class="relative flex items-center justify-center mb-[-18px]">
@@ -464,105 +464,115 @@
     </div>
 
     <!-- Không gian trên mặt bàn thờ: 2 Đèn thờ + Hoa sen + Lư hương -->
-    <div class="relative z-20 flex items-end justify-between w-[88%] max-w-lg px-2 md:px-6">
-
-      <!-- Đèn dầu / Nến bên trái -->
-      <div class="flex flex-col items-center mb-1">
-        <div id="flameLeft" class="w-3.5 h-5 bg-gradient-to-t from-[#ff4500] via-[#ffd700] to-white rounded-full blur-[0.5px] shadow-[0_0_15px_#ffae00,0_0_30px_#ff4500]"></div>
-        <div class="w-6 h-8 bg-gradient-to-b from-[#fff2b2] to-[#b8860b] rounded-t-full rounded-b-md border border-[#ffd700]/60 shadow-md"></div>
-        <div class="w-9 h-2 bg-[#7a5600] rounded-full"></div>
+    <div class="relative z-20 flex items-end justify-center gap-2 sm:gap-3.5 md:gap-5 w-[94%] max-w-md mx-auto">
+      <!-- CỤM TRÁI: Đèn dầu + Đĩa Ngũ Quả -->
+      <div class="flex items-end gap-1.5 sm:gap-2.5">
+        <!-- Đèn dầu / Nến bên trái -->
+        <div class="flex flex-col items-center">
+          <div id="flameLeft" class="w-3.5 h-5 bg-gradient-to-t from-[#ff4500] via-[#ffd700] to-white rounded-full blur-[0.5px] shadow-[0_0_15px_#ffae00,0_0_30px_#ff4500]"></div>
+          <div class="w-5 sm:w-6 h-8 bg-gradient-to-b from-[#fff2b2] to-[#b8860b] rounded-t-full rounded-b-md border border-[#ffd700]/60 shadow-md"></div>
+          <div class="w-8 sm:w-9 h-2 bg-[#7a5600] rounded-full"></div>
+        </div>
 
         <!-- Đĩa Ngũ Quả trái -->
-        <div class="absolute bottom-0 left-[14%] md:left-[18%] z-20 flex flex-col items-center pointer-events-none scale-90 md:scale-100">
+        <div class="flex flex-col items-center scale-90 sm:scale-100 origin-bottom">
           <div class="relative w-12 h-6 flex items-end justify-center">
             <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffb703] to-[#fb8500] -mr-1.5 z-10 border border-[#ffd166]/40"></div>
             <div class="w-4 h-4 rounded-full bg-gradient-to-b from-[#ffccd5] via-[#ff758f] to-[#c9184a] -mb-0.5 z-20 border border-[#ffe5ec]/50"></div>
             <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#a7c957] to-[#386641] -ml-1.5 z-10 border border-[#dde5b6]/40"></div>
             <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffd166] to-[#e09f3e] z-30"></div>
           </div>
-          <div class="w-14 h-1.5 bg-gradient-to-r from-[#8a6208] via-[#ffd700] to-[#8a6208] rounded-b-full border-t border-[#fff8d6]"></div>
+          <div class="w-13 sm:w-14 h-1.5 bg-gradient-to-r from-[#8a6208] via-[#ffd700] to-[#8a6208] rounded-b-full border-t border-[#fff8d6]"></div>
           <div class="w-4 h-1.5 bg-gradient-to-r from-[#5c3a00] via-[#d4af37] to-[#5c3a00]"></div>
           <div class="w-7 h-1 bg-[#7a5600] rounded-t-sm"></div>
         </div>
       </div>
 
-      <!-- Hoa sen trái dâng cúng -->
-      <div id="lotusLeft" class="translate-x-10 md:translate-x-5 translate-y-1 text-3xl md:text-4xl opacity-0 scale-50 transition-all duration-700 drop-shadow-[0_0_12px_rgba(255,105,180,0.9)]">
-        🪷
-      </div>
+      <!-- CỤM TRUNG TÂM: Hoa sen trái + Lư hương + Hoa sen phải (Sát nhau) -->
+      <div class="relative flex items-end justify-center gap-0.5 sm:gap-1">
+        <!-- Hoa sen trái sát lư hương -->
+        <div id="lotusLeft" class="text-2xl sm:text-3xl md:text-4xl translate-y-1 opacity-0 scale-50 transition-all duration-700 drop-shadow-[0_0_12px_rgba(255,105,180,0.9)] z-20">
+          🪷
+        </div>
 
-      <!-- Lư hương đồng trung tâm -->
-      <div class="relative flex flex-col items-center">
-        <!-- Vùng chứa khói bay -->
-        <div id="smokeContainer" class="absolute -top-28 left-1/2 -translate-x-1/2 w-24 h-28 pointer-events-none"></div>
+        <!-- Lư hương đồng & 3 chén nước -->
+        <div class="relative flex flex-col items-center">
+          <!-- Vùng chứa khói bay -->
+          <div id="smokeContainer" class="absolute -top-28 left-1/2 -translate-x-1/2 w-24 h-28 pointer-events-none"></div>
 
-        <!-- 3 Nén nhang -->
-        <div id="incenseSticks" class="flex gap-3 h-16 items-end opacity-0 translate-y-4 transition-all duration-700">
-          <div class="w-[2.5px] h-14 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
-            <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+          <!-- 3 Nén nhang -->
+          <div id="incenseSticks" class="flex gap-3 h-16 items-end opacity-0 translate-y-4 transition-all duration-700">
+            <div class="w-[2.5px] h-14 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
+              <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+            </div>
+            <div class="w-[2.5px] h-16 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
+              <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+            </div>
+            <div class="w-[2.5px] h-14 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
+              <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+            </div>
           </div>
-          <div class="w-[2.5px] h-16 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
-            <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+
+          <!-- Thân lư đồng có tai lư -->
+          <div class="relative flex items-center">
+            <!-- Tai lư trái -->
+            <div class="w-2.5 sm:w-3 h-7 border-2 border-[#d4af37] rounded-l-full -mr-1"></div>
+            <!-- Bầu lư -->
+            <div class="w-24 sm:w-28 h-14 bg-[radial-gradient(circle_at_35%_30%,#fff2b2_0%,#d4af37_40%,#8a6208_85%,#4a3200_100%)] rounded-t-md rounded-b-[40px] shadow-[0_10px_20px_rgba(0,0,0,0.85),inset_0_-4px_8px_rgba(0,0,0,0.5)] border-t-[3px] border-[#fff8d6] flex flex-col items-center justify-center relative z-10">
+            </div>
+            <!-- Tai lư phải -->
+            <div class="w-2.5 sm:w-3 h-7 border-2 border-[#d4af37] rounded-r-full -ml-1"></div>
           </div>
-          <div class="w-[2.5px] h-14 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
-            <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+
+          <!-- Chân đế lư -->
+          <div class="w-16 h-2 bg-gradient-to-r from-[#5c3a00] via-[#d4af37] to-[#5c3a00] rounded-b-md"></div>
+
+          <!-- Hàng 3 chén nước nổi đè lên chân lư hương -->
+          <div id="waterCups" class="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 flex items-end justify-center gap-2 pointer-events-none">
+            <div class="flex flex-col items-center">
+              <div class="w-4 h-3 rounded-b-md bg-gradient-to-b from-[#e0f7fa]/90 via-[#80deea]/60 to-[#d4af37] border border-[#ffd700] shadow-[0_2px_6px_rgba(0,0,0,0.8)]"></div>
+              <div class="w-2.5 h-0.5 bg-[#5c3a00] rounded-b-sm"></div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-4 h-3 rounded-b-md bg-gradient-to-b from-[#e0f7fa]/90 via-[#80deea]/60 to-[#d4af37] border border-[#ffd700] shadow-[0_2px_6px_rgba(0,0,0,0.8)]"></div>
+              <div class="w-2.5 h-0.5 bg-[#5c3a00] rounded-b-sm"></div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-4 h-3 rounded-b-md bg-gradient-to-b from-[#e0f7fa]/90 via-[#80deea]/60 to-[#d4af37] border border-[#ffd700] shadow-[0_2px_6px_rgba(0,0,0,0.8)]"></div>
+              <div class="w-2.5 h-0.5 bg-[#5c3a00] rounded-b-sm"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Thân lư đồng có tai lư -->
-        <div class="relative flex items-center">
-          <!-- Tai lư trái -->
-          <div class="w-3 h-7 border-2 border-[#d4af37] rounded-l-full -mr-1"></div>
-          <!-- Bầu lư -->
-          <div class="w-28 h-14 bg-[radial-gradient(circle_at_35%_30%,#fff2b2_0%,#d4af37_40%,#8a6208_85%,#4a3200_100%)] rounded-t-md rounded-b-[40px] shadow-[0_10px_20px_rgba(0,0,0,0.85),inset_0_-4px_8px_rgba(0,0,0,0.5)] border-t-[3px] border-[#fff8d6] flex flex-col items-center justify-center relative z-10">
-          </div>
-          <!-- Tai lư phải -->
-          <div class="w-3 h-7 border-2 border-[#d4af37] rounded-r-full -ml-1"></div>
-        </div>
-        <!-- Chân đế lư -->
-        <div class="w-16 h-2 bg-gradient-to-r from-[#5c3a00] via-[#d4af37] to-[#5c3a00] rounded-b-md"></div>
-
-        <!-- Hàng 3 chén nước thanh tịnh phía trước lư hương -->
-        <div class="relative z-20 flex items-end justify-center gap-3 -mt-1 mb-0.5">
-          <div class="flex flex-col items-center">
-            <div class="w-5 h-3.5 rounded-b-lg bg-gradient-to-b from-[#e0f7fa]/80 via-[#80deea]/50 to-[#d4af37] border border-[#ffd700]/80 shadow-sm"></div>
-            <div class="w-3 h-1 bg-[#8a6208] rounded-b-sm"></div>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-5 h-3.5 rounded-b-lg bg-gradient-to-b from-[#e0f7fa]/80 via-[#80deea]/50 to-[#d4af37] border border-[#ffd700]/80 shadow-sm"></div>
-            <div class="w-3 h-1 bg-[#8a6208] rounded-b-sm"></div>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="w-5 h-3.5 rounded-b-lg bg-gradient-to-b from-[#e0f7fa]/80 via-[#80deea]/50 to-[#d4af37] border border-[#ffd700]/80 shadow-sm"></div>
-            <div class="w-3 h-1 bg-[#8a6208] rounded-b-sm"></div>
-          </div>
+        <!-- Hoa sen phải sát lư hương -->
+        <div id="lotusRight" class="text-2xl sm:text-3xl md:text-4xl translate-y-1 opacity-0 scale-50 transition-all duration-700 drop-shadow-[0_0_12px_rgba(255,105,180,0.9)] z-20">
+          🪷
         </div>
       </div>
 
-      <!-- Hoa sen phải dâng cúng -->
-      <div id="lotusRight" class="-translate-x-10 md:-translate-x-5 translate-y-1 text-3xl md:text-4xl opacity-0 scale-50 transition-all duration-700 drop-shadow-[0_0_12px_rgba(255,105,180,0.9)]">
-        🪷
-      </div>
-
-      <!-- Đèn dầu / Nến bên phải -->
-      <div class="flex flex-col items-center mb-1">
-        <div id="flameRight" class="w-3.5 h-5 bg-gradient-to-t from-[#ff4500] via-[#ffd700] to-white rounded-full blur-[0.5px] shadow-[0_0_15px_#ffae00,0_0_30px_#ff4500]"></div>
-        <div class="w-6 h-8 bg-gradient-to-b from-[#fff2b2] to-[#b8860b] rounded-t-full rounded-b-md border border-[#ffd700]/60 shadow-md"></div>
-        <div class="w-9 h-2 bg-[#7a5600] rounded-full"></div>
-
+      <!-- CỤM PHẢI: Đĩa Ngũ Quả + Đèn dầu -->
+      <div class="flex items-end gap-1.5 sm:gap-2.5">
         <!-- Đĩa Ngũ Quả phải -->
-        <div class="absolute bottom-0 right-[14%] md:right-[18%] z-20 flex flex-col items-center pointer-events-none scale-90 md:scale-100">
+        <div class="flex flex-col items-center scale-90 sm:scale-100 origin-bottom">
           <div class="relative w-12 h-6 flex items-end justify-center">
             <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#a7c957] to-[#386641] -mr-1.5 z-10 border border-[#dde5b6]/40"></div>
             <div class="w-4 h-4 rounded-full bg-gradient-to-b from-[#ffccd5] via-[#ff758f] to-[#c9184a] -mb-0.5 z-20 border border-[#ffe5ec]/50"></div>
             <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffb703] to-[#fb8500] -ml-1.5 z-10 border border-[#ffd166]/40"></div>
             <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffd166] to-[#e09f3e] z-30"></div>
           </div>
-          <div class="w-14 h-1.5 bg-gradient-to-r from-[#8a6208] via-[#ffd700] to-[#8a6208] rounded-b-full border-t border-[#fff8d6]"></div>
+          <div class="w-13 sm:w-14 h-1.5 bg-gradient-to-r from-[#8a6208] via-[#ffd700] to-[#8a6208] rounded-b-full border-t border-[#fff8d6]"></div>
           <div class="w-4 h-1.5 bg-gradient-to-r from-[#5c3a00] via-[#d4af37] to-[#5c3a00]"></div>
           <div class="w-7 h-1 bg-[#7a5600] rounded-t-sm"></div>
         </div>
+
+        <!-- Đèn dầu / Nến bên phải -->
+        <div class="flex flex-col items-center">
+          <div id="flameRight" class="w-3.5 h-5 bg-gradient-to-t from-[#ff4500] via-[#ffd700] to-white rounded-full blur-[0.5px] shadow-[0_0_15px_#ffae00,0_0_30px_#ff4500]"></div>
+          <div class="w-5 sm:w-6 h-8 bg-gradient-to-b from-[#fff2b2] to-[#b8860b] rounded-t-full rounded-b-md border border-[#ffd700]/60 shadow-md"></div>
+          <div class="w-8 sm:w-9 h-2 bg-[#7a5600] rounded-full"></div>
+        </div>
       </div>
+
     </div>
 
     <!-- Mặt bàn thờ gỗ 3D chạm khắc bề thế -->
@@ -581,8 +591,6 @@
         <div class="w-6 h-5 bg-gradient-to-r from-[#1a0802] via-[#3b1706] to-[#1a0802] border-x border-[#b8860b]/40"></div>
       </div>
     </div>
-
-
   </main>
 
   <!-- Bảng điều khiển tương tác phía dưới -->
@@ -622,18 +630,6 @@
         <span>Gửi Nguyện</span>
       </button>
     </form>
-
-    <!-- Bộ đếm niệm Phật / Công đức -->
-    <div class="flex items-center justify-between px-3 py-1.5 mb-3 rounded-xl bg-black/40 border border-[#d4af37]/30 text-xs text-[#e0c097]">
-      <div class="flex items-center gap-1.5">
-        <span>📿</span>
-        <span>Số biến niệm Phật: <strong id="chantCount" class="text-[#ffd700] text-sm font-bold">0</strong></span>
-      </div>
-      <button id="btnResetCount" type="button" class="text-[11px] text-[#a88b68] hover:text-[#ffd700] underline transition">
-        Đặt lại
-      </button>
-    </div>
-
   </footer>
 
   <!-- Hộp thoại Sổ Vàng Lưu Lời Nguyện -->
