@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Không Gian Lễ Phật Trực Tuyến</title>
+    <!-- Nhúng Google Font Noto Serif -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Nhúng Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { serif: ['"Noto Serif"', 'serif'] }
+                }
+            }
+        }
+    </script>
+    <!-- Liên kết file CSS hiệu ứng riêng -->
+    <style>
+	  /* Nhập font chữ chân phương, trang nghiêm hỗ trợ đầy đủ tiếng Việt */
+		@import url('https://googleapis.com');
+
+		/* Cấu hình chung */
+		body {
+		  font-family: 'Noto Serif', Georgia, serif;
+		  -webkit-font-smoothing: antialiased;
+		  -moz-osx-font-smoothing: grayscale;
+		}
+
+		/* 1. Hiệu ứng tượng Phật lơ lửng nhẹ nhàng và tỏa hào quang ấm */
+		#buddhaStatue {
+		  animation: buddhaFloat 5.5s ease-in-out infinite;
+		  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.92))
+				  drop-shadow(0 0 18px rgba(255, 215, 0, 0.25));
+		}
+
+		@keyframes buddhaFloat {
+		  0%, 100% {
+			transform: translateY(0px);
+		  }
+		  50% {
+			transform: translateY(-6px);
+		  }
+		}
+
+		/* 2. Ngọn lửa đèn thờ bập bùng tự nhiên */
+		#flameLeft,
+		#flameRight {
+		  transform-origin: bottom center;
+		  animation: candleFlicker 1.8s ease-in-out infinite alternate;
+		}
+
+		#flameRight {
+		  animation-delay: 0.45s;
+		}
+
+		@keyframes candleFlicker {
+		  0% {
+			transform: scale(0.95, 1) rotate(-2deg);
+			opacity: 0.88;
+		  }
+		  50% {
+			transform: scale(1.06, 1.14) rotate(1.5deg);
+			opacity: 1;
+		  }
+		  100% {
+			transform: scale(0.98, 1.05) rotate(-1deg);
+			opacity: 0.92;
+		  }
+		}
+
+		/* 3. Vệt sáng lướt qua các nút hành lễ khi di chuột */
+		#btnIncense::after,
+		#btnLotus::after,
+		#btnBell::after {
+		  content: '';
+		  position: absolute;
+		  top: 0;
+		  left: -100%;
+		  width: 60%;
+		  height: 100%;
+		  background: linear-gradient(
+			120deg,
+			transparent,
+			rgba(255, 224, 102, 0.25),
+			transparent
+		  );
+		  transition: left 0.6s ease;
+		}
+
+		#btnIncense:hover::after,
+		#btnLotus:hover::after,
+		#btnBell:hover::after {
+		  left: 130%;
+		}
+
+		/* 4. Tùy chỉnh ô nhập lời nguyện */
+		#prayerInput {
+		  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
+		}
+
+		#prayerInput::placeholder {
+		  transition: opacity 0.3s ease;
+		}
+
+		#prayerInput:focus::placeholder {
+		  opacity: 0.4;
+		}
+
+		/* 5. Tinh chỉnh độ mượt cho khói hương và bụi vàng */
+		#smokeContainer div,
+		#particles div {
+		  will-change: transform, opacity;
+		}
+
+		/* Chế độ Tượng Bạch Ngọc Lưu Ly */
+		#buddhaStatue.jade-mode {
+		  filter: hue-rotate(125deg) saturate(0.45) brightness(1.25)
+				  drop-shadow(0 12px 28px rgba(0, 0, 0, 0.9))
+				  drop-shadow(0 0 22px rgba(180, 255, 240, 0.45));
+		  transition: filter 0.8s ease;
+		}
+
+		#buddhaStatue {
+		  transition: filter 0.8s ease;
+		}
+
+		/* Chế độ Tĩnh tâm ẩn bảng điều khiển */
+		footer.zen-hidden {
+		  opacity: 0;
+		  transform: translateY(120%);
+		  pointer-events: none;
+		}
+
+		footer {
+		  transition: opacity 0.5s ease, transform 0.5s ease;
+		}
+
+    /* Hiệu ứng vệt sáng lướt cho nút Gõ Mõ */
+    #btnWoodenFish::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 224, 102, 0.25),
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    #btnWoodenFish:hover::after {
+      left: 130%;
+    }
+
+    /* Hiệu ứng nảy nhẹ khi số biến niệm Phật tăng lên */
+    .count-bump {
+      animation: bumpScale 0.25s ease-out;
+    }
+
+    @keyframes bumpScale {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.35); color: #ffffff; }
+      100% { transform: scale(1); }
+    }
+
+    /* Tùy chỉnh thanh cuộn cho Sổ Vàng Lời Nguyện */
+    #prayerList::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    #prayerList::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+
+    #prayerList::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.5);
+      border-radius: 10px;
+    }
+
+    #prayerList::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 215, 0, 0.8);
+    }
+
+	</style>
+
+</head>
+<body class="font-serif bg-[radial-gradient(ellipse_at_top,#4a2511_0%,#1f0d05_55%,#0a0301_100%)] text-[#fceabb] min-h-screen overflow-hidden flex flex-col items-center justify-between relative select-none">
+
+	<!-- Thanh công cụ tiện ích góc trên bên phải -->
+	<div id="topToolbar" class="fixed top-4 right-4 z-30 flex items-center gap-2">
+	  <button id="btnAmbientAudio" type="button" title="Bật/Tắt âm thanh thiền"
+		class="w-9 h-9 rounded-full bg-[#1a0903]/80 border border-[#d4af37]/50 hover:border-[#ffd700] text-[#fceabb] flex items-center justify-center shadow-lg backdrop-blur-sm transition active:scale-90">
+		🔇
+	  </button>
+
+	  <button id="btnToggleJade" type="button" title="Đổi sắc tượng Vàng / Bạch Ngọc"
+		class="w-9 h-9 rounded-full bg-[#1a0903]/80 border border-[#d4af37]/50 hover:border-[#ffd700] text-[#fceabb] flex items-center justify-center shadow-lg backdrop-blur-sm transition active:scale-90">
+		💎
+	  </button>
+
+	  <button id="btnZenMode" type="button" title="Chế độ tĩnh tâm (Ẩn/Hiện thanh điều khiển)"
+		class="w-9 h-9 rounded-full bg-[#1a0903]/80 border border-[#d4af37]/50 hover:border-[#ffd700] text-[#fceabb] flex items-center justify-center shadow-lg backdrop-blur-sm transition active:scale-90">
+		👁️
+	  </button>
+    <button id="btnPrayerBook" type="button" title="Xem Sổ Vàng Lời Nguyện"
+      class="w-9 h-9 rounded-full bg-[#1a0903]/80 border border-[#d4af37]/50 hover:border-[#ffd700] text-[#fceabb] flex items-center justify-center shadow-lg backdrop-blur-sm transition active:scale-90">
+      📜
+    </button>
+	</div>
+
+  <!-- Ánh sáng hào quang tổng thể từ trên chiếu xuống -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(255,215,0,0.15)_0%,transparent_70%)] pointer-events-none z-0"></div>
+
+  <!-- Lớp bụi ánh sáng vàng nền -->
+  <div id="particles" class="absolute inset-0 pointer-events-none z-0"></div>
+
+    <!-- Khung viền hoa văn cổ điển 4 góc -->
+  <div class="fixed inset-3 md:inset-5 border border-[#d4af37]/20 rounded-2xl pointer-events-none z-0">
+    <!-- Góc trên trái -->
+    <div class="absolute -top-0.5 -left-0.5 w-6 h-6 border-t-2 border-l-2 border-[#ffd700]/60 rounded-tl-xl"></div>
+    <!-- Góc trên phải -->
+    <div class="absolute -top-0.5 -right-0.5 w-6 h-6 border-t-2 border-r-2 border-[#ffd700]/60 rounded-tr-xl"></div>
+    <!-- Góc dưới trái -->
+    <div class="absolute -bottom-0.5 -left-0.5 w-6 h-6 border-b-2 border-l-2 border-[#ffd700]/60 rounded-bl-xl"></div>
+    <!-- Góc dưới phải -->
+    <div class="absolute -bottom-0.5 -right-0.5 w-6 h-6 border-b-2 border-r-2 border-[#ffd700]/60 rounded-br-xl"></div>
+  </div>
+
+  <!-- Đôi Câu Đối Sơn Son Thiếp Vàng (Hiện trên màn hình vừa và lớn) -->
+  <aside class="hidden md:flex fixed left-6 lg:left-12 top-1/2 -translate-y-1/2 z-10 flex-col items-center pointer-events-none">
+    <div class="w-3 h-3 rounded-full bg-[#ffd700] shadow-[0_0_8px_#ffd700] mb-1"></div>
+    <div class="bg-gradient-to-b from-[#4a0e0e] via-[#2e0707] to-[#4a0e0e] border-2 border-[#d4af37]/80 px-3 py-5 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.9)] flex flex-col items-center gap-2 text-[#ffd700] font-bold text-base lg:text-lg tracking-widest">
+      <span>PHẬT</span>
+      <span>QUANG</span>
+      <span>PHỔ</span>
+      <span>CHIẾU</span>
+      <span class="text-xs text-[#d4af37]/60 my-0.5">❖</span>
+      <span>VẠN</span>
+      <span>SỰ</span>
+      <span>AN</span>
+      <span>LÀNH</span>
+    </div>
+  </aside>
+
+  <aside class="hidden md:flex fixed right-6 lg:right-12 top-1/2 -translate-y-1/2 z-10 flex-col items-center pointer-events-none">
+    <div class="w-3 h-3 rounded-full bg-[#ffd700] shadow-[0_0_8px_#ffd700] mb-1"></div>
+    <div class="bg-gradient-to-b from-[#4a0e0e] via-[#2e0707] to-[#4a0e0e] border-2 border-[#d4af37]/80 px-3 py-5 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.9)] flex flex-col items-center gap-2 text-[#ffd700] font-bold text-base lg:text-lg tracking-widest">
+      <span>TÂM</span>
+      <span>THÀNH</span>
+      <span>KÍNH</span>
+      <span>LỄ</span>
+      <span class="text-xs text-[#d4af37]/60 my-0.5">❖</span>
+      <span>GIA</span>
+      <span>ĐẠO</span>
+      <span>BÌNH</span>
+      <span>AN</span>
+    </div>
+  </aside>
+
+  <!-- Thông báo nổi khi tương tác -->
+  <div id="toast" class="fixed top-20 z-50 px-5 py-2.5 rounded-full bg-[#2b1408]/95 border border-[#ffd700]/60 text-[#ffd700] text-sm shadow-[0_0_20px_rgba(255,215,0,0.3)] opacity-0 -translate-y-2 transition-all duration-500 pointer-events-none"></div>
+
+  <!-- Tiêu đề -->
+  <header class="text-center pt-5 z-10 px-4">
+    <div class="inline-block border-y border-[#d4af37]/40 py-1.5 px-6 bg-black/20 backdrop-blur-sm rounded-full">
+      <h1 class="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#fff6cc] via-[#ffd700] to-[#b8860b] tracking-[0.2em] drop-shadow-[0_2px_10px_rgba(255,215,0,0.4)]">
+        NAM MÔ A DI ĐÀ PHẬT
+      </h1>
+    </div>
+    <p class="italic text-xs md:text-sm text-[#e0c097]/90 mt-2 tracking-wider">Tâm thành kính lễ – Vạn sự bình an</p>
+  </header>
+
+  <!-- Đôi đèn lồng đỏ ấm áp treo hai bên -->
+  <div class="w-full max-w-xl flex justify-between px-6 md:px-10 -mt-3 pointer-events-none z-10">
+    <div class="flex flex-col items-center animate-[pulse_4s_ease-in-out_infinite]">
+      <div class="w-[1px] h-4 bg-[#d4af37]"></div>
+      <div class="w-6 h-7 rounded-full bg-gradient-to-b from-[#ff4d4d] via-[#b30000] to-[#660000] border border-[#ffd700] shadow-[0_0_15px_rgba(255,69,0,0.6)] flex items-center justify-center">
+        <span class="text-[9px] text-[#ffd700] font-bold">Phúc</span>
+      </div>
+      <div class="w-1 h-2.5 bg-[#ffd700]/80"></div>
+    </div>
+
+    <div class="flex flex-col items-center animate-[pulse_4s_ease-in-out_infinite]">
+      <div class="w-[1px] h-4 bg-[#d4af37]"></div>
+      <div class="w-6 h-7 rounded-full bg-gradient-to-b from-[#ff4d4d] via-[#b30000] to-[#660000] border border-[#ffd700] shadow-[0_0_15px_rgba(255,69,0,0.6)] flex items-center justify-center">
+        <span class="text-[9px] text-[#ffd700] font-bold">An</span>
+      </div>
+      <div class="w-1 h-2.5 bg-[#ffd700]/80"></div>
+    </div>
+  </div>
+
+
+  <!-- Khu vực Bàn Thờ trung tâm -->
+  <main class="relative flex flex-col items-center justify-end flex-grow w-full max-w-2xl z-10 pb-2">
+
+    <!-- Vòng hào quang đa lớp phía sau Phật -->
+    <div class="relative flex items-center justify-center mb-[-18px]">
+      <!-- Hào quang tỏa sáng tĩnh -->
+      <div class="absolute w-72 h-72 md:w-80 md:h-80 rounded-full bg-[radial-gradient(circle,rgba(255,223,100,0.45)_0%,rgba(255,165,0,0.15)_45%,transparent_70%)] blur-md"></div>
+
+      <!-- Vòng tia sáng xoay chậm -->
+      <div class="absolute w-64 h-64 md:w-72 md:h-72 rounded-full border border-[#ffd700]/30 bg-[conic-gradient(from_0deg,rgba(255,215,0,0.25),transparent_20%,rgba(255,215,0,0.25),transparent_50%,rgba(255,215,0,0.25),transparent_80%)] animate-[spin_35s_linear_infinite]"></div>
+
+      <!-- Vòng viền hào quang kép -->
+      <div class="absolute w-56 h-56 md:w-64 md:h-64 rounded-full border-2 border-dashed border-[#ffd700]/40 animate-[spin_60s_linear_infinite_reverse]"></div>
+
+      <!-- Tượng Phật SVG Tinh Xảo -->
+      <svg id="buddhaStatue" class="relative z-10 w-64 h-72 md:w-72 md:h-80 drop-shadow-[0_15px_30px_rgba(0,0,0,0.95)]" viewBox="0 0 300 320" xmlns="http://w3.org">
+		  <defs>
+			<!-- Gradient vàng ròng cho da và diện Phật -->
+			<radialGradient id="skinGold" cx="45%" cy="35%" r="60%">
+			  <stop offset="0%" stop-color="#fffbe6"/>
+			  <stop offset="35%" stop-color="#ffd700"/>
+			  <stop offset="75%" stop-color="#c99316"/>
+			  <stop offset="100%" stop-color="#7a5100"/>
+			</radialGradient>
+
+			<!-- Gradient ánh kim cho áo cà sa -->
+			<linearGradient id="robeGold" x1="15%" y1="0%" x2="85%" y2="100%">
+			  <stop offset="0%" stop-color="#ffe885"/>
+			  <stop offset="30%" stop-color="#e0a81e"/>
+			  <stop offset="70%" stop-color="#9c6b08"/>
+			  <stop offset="100%" stop-color="#4f3300"/>
+			</linearGradient>
+
+			<!-- Gradient lớp áo lót bên trong -->
+			<linearGradient id="innerRobe" x1="0%" y1="0%" x2="100%" y2="100%">
+			  <stop offset="0%" stop-color="#b87e0e"/>
+			  <stop offset="100%" stop-color="#472b00"/>
+			</linearGradient>
+
+			<!-- Gradient cánh sen hồng ngọc -->
+			<linearGradient id="petalMain" x1="0%" y1="0%" x2="0%" y2="100%">
+			  <stop offset="0%" stop-color="#ffe0e9"/>
+			  <stop offset="45%" stop-color="#ff69b4"/>
+			  <stop offset="85%" stop-color="#c71585"/>
+			  <stop offset="100%" stop-color="#6e073d"/>
+			</linearGradient>
+
+			<!-- Gradient cánh sen lớp ngoài trầm ấm -->
+			<linearGradient id="petalBack" x1="0%" y1="0%" x2="0%" y2="100%">
+			  <stop offset="0%" stop-color="#e05297"/>
+			  <stop offset="100%" stop-color="#4d0429"/>
+			</linearGradient>
+
+			<!-- Hiệu ứng phát sáng nhẹ cho Bạch Hào & Bảo Châu -->
+			<filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+			  <feGaussianBlur stdDeviation="2.5" result="blur"/>
+			  <feMerge>
+				<feMergeNode in="blur"/>
+				<feMergeNode in="SourceGraphic"/>
+			  </feMerge>
+			</filter>
+
+			<!-- Họa tiết tóc xoắn ốc -->
+			<pattern id="hairCurls" width="6" height="6" patternUnits="userSpaceOnUse">
+			  <circle cx="3" cy="3" r="2.3" fill="#4a2e00" stroke="#9e6b0b" stroke-width="0.6"/>
+			</pattern>
+		  </defs>
+
+		  <!-- 1. PHẦN ĐẦU & DIỆN PHẬT -->
+		  <g id="buddhaHead">
+			<!-- Nhục kế (đỉnh đầu) & Viên bảo châu phát sáng -->
+			<path d="M136,42 C136,27 164,27 164,42 Z" fill="url(#hairCurls)" stroke="#8a5a00" stroke-width="0.8"/>
+			<circle cx="150" cy="25" r="4" fill="#fff9d6" filter="url(#softGlow)"/>
+
+			<!-- Khối tóc xoắn ốc -->
+			<path d="M122,72 C119,40 181,40 178,72 Z" fill="url(#hairCurls)" stroke="#704800" stroke-width="1"/>
+
+			<!-- Tai trái & Tai phải dài chạm vai (tướng tốt) -->
+			<path d="M123,74 C114,76 112,96 119,108 C122,112 126,108 125,101" fill="url(#skinGold)" stroke="#7a5100" stroke-width="1.2"/>
+			<path d="M120,82 C117,87 117,96 120,102" fill="none" stroke="#8a5a00" stroke-width="1"/>
+
+			<path d="M177,74 C186,76 188,96 181,108 C178,112 174,108 175,101" fill="url(#skinGold)" stroke="#7a5100" stroke-width="1.2"/>
+			<path d="M180,82 C183,87 183,96 180,102" fill="none" stroke="#8a5a00" stroke-width="1"/>
+
+			<!-- Khuôn mặt trái xoan phúc hậu -->
+			<path d="M123,70 Q122,106 150,112 Q178,106 177,70 Q150,64 123,70 Z" fill="url(#skinGold)" stroke="#8a5a00" stroke-width="1"/>
+
+			<!-- Bạch hào tướng (chấm sáng giữa trán) -->
+			<circle cx="150" cy="72" r="2.3" fill="#ffffff" filter="url(#softGlow)"/>
+
+			<!-- Chân mày thanh thoát nối liền sống mũi -->
+			<path d="M131,79 Q140,74 147,80 L146,91" fill="none" stroke="#5c3a00" stroke-width="1.4" stroke-linecap="round"/>
+			<path d="M169,79 Q160,74 153,80 L154,91" fill="none" stroke="#5c3a00" stroke-width="1.4" stroke-linecap="round"/>
+			<!-- Chóp mũi mềm mại -->
+			<path d="M146,92 Q150,94 154,92" fill="none" stroke="#6e4600" stroke-width="1.3" stroke-linecap="round"/>
+
+			<!-- Đôi mắt khép hờ từ bi -->
+			<path d="M133,83 Q139,87 144,83" fill="none" stroke="#4a2c00" stroke-width="1.6" stroke-linecap="round"/>
+			<path d="M135,82 Q139,80 143,82" fill="none" stroke="#8a5a00" stroke-width="0.8"/>
+
+			<path d="M156,83 Q161,87 167,83" fill="none" stroke="#4a2c00" stroke-width="1.6" stroke-linecap="round"/>
+			<path d="M157,82 Q161,80 165,82" fill="none" stroke="#8a5a00" stroke-width="0.8"/>
+
+			<!-- Khuôn miệng mỉm cười an lạc -->
+			<path d="M143,99 Q150,103 157,99" fill="none" stroke="#5c3a00" stroke-width="1.6" stroke-linecap="round"/>
+			<path d="M146,102 Q150,104 154,102" fill="none" stroke="#8a5a00" stroke-width="1" stroke-linecap="round"/>
+		  </g>
+
+		  <!-- 2. PHẦN CỔ, THÂN & ÁO CÀ SA -->
+		  <g id="buddhaBody">
+			<!-- Cổ ba ngấn (Tam đạo) -->
+			<path d="M137,109 L135,122 L165,122 L163,109 Z" fill="url(#skinGold)"/>
+			<path d="M138,114 Q150,117 162,114" fill="none" stroke="#8a5a00" stroke-width="1"/>
+			<path d="M137,118 Q150,121 163,118" fill="none" stroke="#8a5a00" stroke-width="1"/>
+
+			<!-- Ngực & Áo lót bên trong -->
+			<path d="M110,124 Q150,116 190,124 L218,225 Q150,240 82,225 Z" fill="url(#innerRobe)"/>
+			<path d="M134,121 Q150,142 166,121 Z" fill="url(#skinGold)"/>
+
+			<!-- Áo cà sa khoác ngoài -->
+			<path d="M108,123 Q125,119 136,121 Q150,155 186,123 Q198,126 205,142 L226,226 Q150,242 74,226 L95,142 Q100,126 108,123 Z" fill="url(#robeGold)" stroke="#6e4600" stroke-width="1.2"/>
+
+			<!-- Hệ thống nếp gấp áo cà sa uyển chuyển -->
+			<path d="M126,121 Q148,162 195,195" fill="none" stroke="#5c3a00" stroke-width="2.2" stroke-linecap="round"/>
+			<path d="M112,130 Q145,172 185,208" fill="none" stroke="#7a5100" stroke-width="1.6" stroke-linecap="round"/>
+			<path d="M184,124 Q162,148 145,165" fill="none" stroke="#5c3a00" stroke-width="2" stroke-linecap="round"/>
+			<path d="M98,155 Q122,182 135,205" fill="none" stroke="#6e4600" stroke-width="1.8" stroke-linecap="round"/>
+			<path d="M202,155 Q182,182 168,205" fill="none" stroke="#6e4600" stroke-width="1.8" stroke-linecap="round"/>
+			<!-- Vạt áo rủ phủ xuống đài sen -->
+			<path d="M115,222 Q150,238 185,222 L178,236 Q150,246 122,236 Z" fill="url(#robeGold)" stroke="#5c3a00" stroke-width="1"/>
+
+			<!-- Đôi bàn tay kiết ấn Thiền định (Dhyana Mudra) -->
+			<g id="meditationHands">
+			  <!-- Bàn tay dưới -->
+			  <path d="M126,204 Q150,214 174,204 Q170,216 150,218 Q130,216 126,204 Z" fill="url(#skinGold)" stroke="#6e4600" stroke-width="1.2"/>
+			  <!-- Bàn tay trên -->
+			  <path d="M130,198 Q150,206 170,198 Q166,208 150,210 Q134,208 130,198 Z" fill="url(#skinGold)" stroke="#6e4600" stroke-width="1.2"/>
+			  <!-- Hai ngón cái chạm nhau tạo vòng tròn tam muội -->
+			  <path d="M138,197 Q150,191 162,197" fill="none" stroke="#5c3a00" stroke-width="1.6" stroke-linecap="round"/>
+			</g>
+		  </g>
+
+		  <!-- 3. ĐÀI SEN 3 LỚP CÁNH & BỆ THỜ -->
+		  <g id="lotusThrone">
+			<!-- Lớp cánh sen sau (tạo chiều sâu) -->
+			<path d="M52,248 Q75,222 95,246 Q115,218 132,245 Q150,215 168,245 Q185,218 205,246 Q225,222 248,248 Q210,275 150,275 Q90,275 52,248 Z" fill="url(#petalBack)" stroke="#4a0427" stroke-width="1"/>
+
+			<!-- Lớp cánh sen giữa -->
+			<path d="M62,252 Q85,226 105,252 Q125,224 150,252 Q175,224 195,252 Q215,226 238,252 Q205,280 150,280 Q95,280 62,252 Z" fill="url(#petalMain)" stroke="#7a0942" stroke-width="1"/>
+
+			<!-- Cánh sen chính diện trung tâm & hai bên -->
+			<path d="M126,254 Q150,224 174,254 Q164,282 150,284 Q136,282 126,254 Z" fill="url(#petalMain)" stroke="#ffb6c1" stroke-width="0.8"/>
+			<path d="M92,254 Q114,228 132,255 Q122,280 108,281 Q96,278 92,254 Z" fill="url(#petalMain)" stroke="#ffb6c1" stroke-width="0.6"/>
+			<path d="M208,254 Q186,228 168,255 Q178,280 192,281 Q204,278 208,254 Z" fill="url(#petalMain)" stroke="#ffb6c1" stroke-width="0.6"/>
+
+			<!-- Đài sen úp ngược phía dưới -->
+			<path d="M78,278 Q150,290 222,278 L234,292 Q150,302 66,292 Z" fill="url(#petalBack)" stroke="#4a0427" stroke-width="1"/>
+
+			<!-- Đế bệ vàng chạm khắc -->
+			<rect x="64" y="292" width="172" height="7" rx="3" fill="url(#skinGold)" stroke="#6e4600" stroke-width="1"/>
+			<path d="M54,299 L246,299 L254,310 L46,310 Z" fill="url(#robeGold)" stroke="#5c3a00" stroke-width="1.2"/>
+		  </g>
+		</svg>
+    </div>
+
+    <!-- Không gian trên mặt bàn thờ: 2 Đèn thờ + Hoa sen + Lư hương -->
+    <div class="relative z-20 flex items-end justify-between w-[88%] max-w-lg px-2 md:px-6">
+
+      <!-- Đèn dầu / Nến bên trái -->
+      <div class="flex flex-col items-center mb-1">
+        <div id="flameLeft" class="w-3.5 h-5 bg-gradient-to-t from-[#ff4500] via-[#ffd700] to-white rounded-full blur-[0.5px] shadow-[0_0_15px_#ffae00,0_0_30px_#ff4500]"></div>
+        <div class="w-6 h-8 bg-gradient-to-b from-[#fff2b2] to-[#b8860b] rounded-t-full rounded-b-md border border-[#ffd700]/60 shadow-md"></div>
+        <div class="w-9 h-2 bg-[#7a5600] rounded-full"></div>
+
+        <!-- Đĩa Ngũ Quả trái -->
+        <div class="absolute bottom-0 left-[14%] md:left-[18%] z-20 flex flex-col items-center pointer-events-none scale-90 md:scale-100">
+          <div class="relative w-12 h-6 flex items-end justify-center">
+            <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffb703] to-[#fb8500] -mr-1.5 z-10 border border-[#ffd166]/40"></div>
+            <div class="w-4 h-4 rounded-full bg-gradient-to-b from-[#ffccd5] via-[#ff758f] to-[#c9184a] -mb-0.5 z-20 border border-[#ffe5ec]/50"></div>
+            <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#a7c957] to-[#386641] -ml-1.5 z-10 border border-[#dde5b6]/40"></div>
+            <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffd166] to-[#e09f3e] z-30"></div>
+          </div>
+          <div class="w-14 h-1.5 bg-gradient-to-r from-[#8a6208] via-[#ffd700] to-[#8a6208] rounded-b-full border-t border-[#fff8d6]"></div>
+          <div class="w-4 h-1.5 bg-gradient-to-r from-[#5c3a00] via-[#d4af37] to-[#5c3a00]"></div>
+          <div class="w-7 h-1 bg-[#7a5600] rounded-t-sm"></div>
+        </div>
+      </div>
+
+      <!-- Hoa sen trái dâng cúng -->
+      <div id="lotusLeft" class="translate-x-10 md:translate-x-5 translate-y-1 text-3xl md:text-4xl opacity-0 scale-50 transition-all duration-700 drop-shadow-[0_0_12px_rgba(255,105,180,0.9)]">
+        🪷
+      </div>
+
+      <!-- Lư hương đồng trung tâm -->
+      <div class="relative flex flex-col items-center">
+        <!-- Vùng chứa khói bay -->
+        <div id="smokeContainer" class="absolute -top-28 left-1/2 -translate-x-1/2 w-24 h-28 pointer-events-none"></div>
+
+        <!-- 3 Nén nhang -->
+        <div id="incenseSticks" class="flex gap-3 h-16 items-end opacity-0 translate-y-4 transition-all duration-700">
+          <div class="w-[2.5px] h-14 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
+            <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+          </div>
+          <div class="w-[2.5px] h-16 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
+            <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+          </div>
+          <div class="w-[2.5px] h-14 bg-gradient-to-b from-[#a0522d] to-[#4a2205] relative rounded-full">
+            <span class="absolute -top-1 -left-[1.5px] w-1.5 h-1.5 bg-[#ff4500] rounded-full shadow-[0_0_8px_#ff0000,0_0_16px_#ffa500] animate-ping"></span>
+          </div>
+        </div>
+
+        <!-- Thân lư đồng có tai lư -->
+        <div class="relative flex items-center">
+          <!-- Tai lư trái -->
+          <div class="w-3 h-7 border-2 border-[#d4af37] rounded-l-full -mr-1"></div>
+          <!-- Bầu lư -->
+          <div class="w-28 h-14 bg-[radial-gradient(circle_at_35%_30%,#fff2b2_0%,#d4af37_40%,#8a6208_85%,#4a3200_100%)] rounded-t-md rounded-b-[40px] shadow-[0_10px_20px_rgba(0,0,0,0.85),inset_0_-4px_8px_rgba(0,0,0,0.5)] border-t-[3px] border-[#fff8d6] flex flex-col items-center justify-center relative z-10">
+          </div>
+          <!-- Tai lư phải -->
+          <div class="w-3 h-7 border-2 border-[#d4af37] rounded-r-full -ml-1"></div>
+        </div>
+        <!-- Chân đế lư -->
+        <div class="w-16 h-2 bg-gradient-to-r from-[#5c3a00] via-[#d4af37] to-[#5c3a00] rounded-b-md"></div>
+
+        <!-- Hàng 3 chén nước thanh tịnh phía trước lư hương -->
+        <div class="relative z-20 flex items-end justify-center gap-3 -mt-1 mb-0.5">
+          <div class="flex flex-col items-center">
+            <div class="w-5 h-3.5 rounded-b-lg bg-gradient-to-b from-[#e0f7fa]/80 via-[#80deea]/50 to-[#d4af37] border border-[#ffd700]/80 shadow-sm"></div>
+            <div class="w-3 h-1 bg-[#8a6208] rounded-b-sm"></div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-5 h-3.5 rounded-b-lg bg-gradient-to-b from-[#e0f7fa]/80 via-[#80deea]/50 to-[#d4af37] border border-[#ffd700]/80 shadow-sm"></div>
+            <div class="w-3 h-1 bg-[#8a6208] rounded-b-sm"></div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-5 h-3.5 rounded-b-lg bg-gradient-to-b from-[#e0f7fa]/80 via-[#80deea]/50 to-[#d4af37] border border-[#ffd700]/80 shadow-sm"></div>
+            <div class="w-3 h-1 bg-[#8a6208] rounded-b-sm"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hoa sen phải dâng cúng -->
+      <div id="lotusRight" class="-translate-x-10 md:-translate-x-5 translate-y-1 text-3xl md:text-4xl opacity-0 scale-50 transition-all duration-700 drop-shadow-[0_0_12px_rgba(255,105,180,0.9)]">
+        🪷
+      </div>
+
+      <!-- Đèn dầu / Nến bên phải -->
+      <div class="flex flex-col items-center mb-1">
+        <div id="flameRight" class="w-3.5 h-5 bg-gradient-to-t from-[#ff4500] via-[#ffd700] to-white rounded-full blur-[0.5px] shadow-[0_0_15px_#ffae00,0_0_30px_#ff4500]"></div>
+        <div class="w-6 h-8 bg-gradient-to-b from-[#fff2b2] to-[#b8860b] rounded-t-full rounded-b-md border border-[#ffd700]/60 shadow-md"></div>
+        <div class="w-9 h-2 bg-[#7a5600] rounded-full"></div>
+
+        <!-- Đĩa Ngũ Quả phải -->
+        <div class="absolute bottom-0 right-[14%] md:right-[18%] z-20 flex flex-col items-center pointer-events-none scale-90 md:scale-100">
+          <div class="relative w-12 h-6 flex items-end justify-center">
+            <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#a7c957] to-[#386641] -mr-1.5 z-10 border border-[#dde5b6]/40"></div>
+            <div class="w-4 h-4 rounded-full bg-gradient-to-b from-[#ffccd5] via-[#ff758f] to-[#c9184a] -mb-0.5 z-20 border border-[#ffe5ec]/50"></div>
+            <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffb703] to-[#fb8500] -ml-1.5 z-10 border border-[#ffd166]/40"></div>
+            <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#ffd166] to-[#e09f3e] z-30"></div>
+          </div>
+          <div class="w-14 h-1.5 bg-gradient-to-r from-[#8a6208] via-[#ffd700] to-[#8a6208] rounded-b-full border-t border-[#fff8d6]"></div>
+          <div class="w-4 h-1.5 bg-gradient-to-r from-[#5c3a00] via-[#d4af37] to-[#5c3a00]"></div>
+          <div class="w-7 h-1 bg-[#7a5600] rounded-t-sm"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mặt bàn thờ gỗ 3D chạm khắc bề thế -->
+    <div class="w-[94%] max-w-xl flex flex-col items-center">
+      <!-- Mặt trên bàn thờ -->
+      <div class="w-full h-3.5 bg-gradient-to-r from-[#2c1205] via-[#7a3310] to-[#2c1205] border-t-2 border-x border-[#ffd700]/85 rounded-t-md shadow-[0_-4px_20px_rgba(255,215,0,0.2)]"></div>
+      <!-- Yếm bàn thờ chạm chữ Vạn / Hoa văn vàng -->
+      <div class="w-[96%] h-7 bg-gradient-to-b from-[#3b1706] via-[#260d03] to-[#140601] border-x border-b border-[#b8860b]/60 shadow-[0_15px_30px_rgba(0,0,0,0.95)] flex items-center justify-center gap-4 px-4">
+        <div class="flex-grow h-[1px] bg-gradient-to-r from-transparent via-[#ffd700]/50 to-[#ffd700]/80"></div>
+        <span class="text-[#ffd700]/80 text-xs tracking-[0.3em]">❖ 卍 ❖</span>
+        <div class="flex-grow h-[1px] bg-gradient-to-l from-transparent via-[#ffd700]/50 to-[#ffd700]/80"></div>
+      </div>
+      <!-- Hai chân trụ bàn thờ tạo chiều sâu xuống đáy -->
+      <div class="w-[88%] flex justify-between px-4">
+        <div class="w-6 h-5 bg-gradient-to-r from-[#1a0802] via-[#3b1706] to-[#1a0802] border-x border-[#b8860b]/40"></div>
+        <div class="w-6 h-5 bg-gradient-to-r from-[#1a0802] via-[#3b1706] to-[#1a0802] border-x border-[#b8860b]/40"></div>
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- Bảng điều khiển tương tác phía dưới -->
+  <footer class="z-20 bg-[#1a0903]/85 border border-[#d4af37]/40 rounded-2xl p-3.5 md:p-5 mb-5 w-[92%] max-w-xl shadow-[0_10px_40px_rgba(0,0,0,0.9)] backdrop-blur-md">
+
+    <!-- Hàng nút hành lễ -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3.5">
+      <button id="btnIncense" type="button" class="group relative overflow-hidden bg-gradient-to-b from-[#2e1507] to-[#1a0a02] hover:from-[#47220c] hover:to-[#291104] border border-[#d4af37]/60 hover:border-[#ffd700] text-[#fceabb] font-medium text-xs md:text-sm py-2.5 px-2 rounded-xl shadow-md transition-all active:scale-95 flex items-center justify-center gap-1.5">
+        <span class="text-base group-hover:scale-110 transition-transform">🔥</span>
+        <span>Thắp Hương</span>
+      </button>
+
+      <button id="btnLotus" type="button" class="group relative overflow-hidden bg-gradient-to-b from-[#2e1507] to-[#1a0a02] hover:from-[#47220c] hover:to-[#291104] border border-[#d4af37]/60 hover:border-[#ffd700] text-[#fceabb] font-medium text-xs md:text-sm py-2.5 px-2 rounded-xl shadow-md transition-all active:scale-95 flex items-center justify-center gap-1.5">
+        <span class="text-base group-hover:scale-110 transition-transform">🪷</span>
+        <span>Dâng Hoa</span>
+      </button>
+
+      <button id="btnBell" type="button" class="group relative overflow-hidden bg-gradient-to-b from-[#2e1507] to-[#1a0a02] hover:from-[#47220c] hover:to-[#291104] border border-[#d4af37]/60 hover:border-[#ffd700] text-[#fceabb] font-medium text-xs md:text-sm py-2.5 px-2 rounded-xl shadow-md transition-all active:scale-95 flex items-center justify-center gap-1.5">
+        <span class="text-base group-hover:rotate-12 transition-transform">🔔</span>
+        <span>Thỉnh Chuông</span>
+      </button>
+
+      <button id="btnWoodenFish" type="button" class="group relative overflow-hidden bg-gradient-to-b from-[#2e1507] to-[#1a0a02] hover:from-[#47220c] hover:to-[#291104] border border-[#d4af37]/60 hover:border-[#ffd700] text-[#fceabb] font-medium text-xs md:text-sm py-2.5 px-2 rounded-xl shadow-md transition-all active:scale-95 flex items-center justify-center gap-1.5">
+        <span class="text-base group-hover:scale-110 transition-transform">🪵</span>
+        <span>Gõ Mõ</span>
+      </button>
+    </div>
+
+
+    <!-- Form gửi lời cầu nguyện -->
+    <form id="prayerForm" class="flex gap-2">
+      <input type="text" id="prayerInput" placeholder="Nhập lời cầu nguyện bình an, sức khỏe..." maxlength="120" required
+        class="flex-grow px-4 py-2.5 rounded-xl border border-[#b8860b]/50 bg-black/60 text-[#fff8dc] placeholder-[#a88b68]/70 placeholder:italic text-xs md:text-sm focus:outline-none focus:border-[#ffd700] focus:ring-1 focus:ring-[#ffd700]/40 transition">
+      <button type="submit"
+        class="bg-gradient-to-b from-[#e6c252] via-[#c5961d] to-[#8f6608] hover:from-[#ffe07d] hover:to-[#b08010] text-[#1f0d02] font-bold text-xs md:text-sm px-4 md:px-5 py-2.5 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.3)] transition transform active:scale-95 whitespace-nowrap flex items-center gap-1.5">
+        <span>🙏</span>
+        <span>Gửi Nguyện</span>
+      </button>
+    </form>
+
+    <!-- Bộ đếm niệm Phật / Công đức -->
+    <div class="flex items-center justify-between px-3 py-1.5 mb-3 rounded-xl bg-black/40 border border-[#d4af37]/30 text-xs text-[#e0c097]">
+      <div class="flex items-center gap-1.5">
+        <span>📿</span>
+        <span>Số biến niệm Phật: <strong id="chantCount" class="text-[#ffd700] text-sm font-bold">0</strong></span>
+      </div>
+      <button id="btnResetCount" type="button" class="text-[11px] text-[#a88b68] hover:text-[#ffd700] underline transition">
+        Đặt lại
+      </button>
+    </div>
+
+  </footer>
+
+  <!-- Hộp thoại Sổ Vàng Lưu Lời Nguyện -->
+  <div id="prayerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-gradient-to-b from-[#2b1408] to-[#140702] border border-[#d4af37]/60 rounded-2xl w-full max-w-md p-5 shadow-[0_0_40px_rgba(255,215,0,0.25)] flex flex-col max-h-[75vh]">
+      <div class="flex items-center justify-between border-b border-[#d4af37]/30 pb-3 mb-3">
+        <h2 class="text-base md:text-lg font-bold text-[#ffd700] tracking-wider flex items-center gap-2">
+          <span>📜</span>
+          <span>Sổ Vàng Lời Cầu Nguyện</span>
+        </h2>
+        <button id="btnCloseModal" type="button" class="text-[#e0c097] hover:text-white text-lg px-2">✕</button>
+      </div>
+
+      <!-- Danh sách lời nguyện -->
+      <div id="prayerList" class="flex-grow overflow-y-auto space-y-2.5 pr-1 text-xs md:text-sm">
+        <!-- Nội dung sẽ được JS tự động thêm vào đây -->
+      </div>
+
+      <div class="border-t border-[#d4af37]/30 pt-3 mt-3 flex justify-between items-center text-xs">
+        <span class="text-[#a88b68] italic">Lưu giữ tâm nguyện thành kính</span>
+        <button id="btnClearPrayers" type="button" class="text-red-400 hover:text-red-300 underline">
+          Xóa tất cả
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- Liên kết file JavaScript -->
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+  // Lấy các phần tử DOM từ thẻ body
+  const particlesContainer = document.getElementById('particles');
+  const toast = document.getElementById('toast');
+  const incenseSticks = document.getElementById('incenseSticks');
+  const smokeContainer = document.getElementById('smokeContainer');
+  const lotusLeft = document.getElementById('lotusLeft');
+  const lotusRight = document.getElementById('lotusRight');
+  const buddhaStatue = document.getElementById('buddhaStatue');
+  const flameLeft = document.getElementById('flameLeft');
+  const flameRight = document.getElementById('flameRight');
+
+  const btnIncense = document.getElementById('btnIncense');
+  const btnLotus = document.getElementById('btnLotus');
+  const btnBell = document.getElementById('btnBell');
+  const prayerForm = document.getElementById('prayerForm');
+  const prayerInput = document.getElementById('prayerInput');
+
+  let smokeInterval = null;
+  let toastTimeout = null;
+  let isIncenseLit = false;
+  let isLotusOffered = false;
+
+  // 1. Hàm hiển thị thông báo nổi (Toast)
+  function showToast(message) {
+    clearTimeout(toastTimeout);
+    toast.textContent = message;
+    toast.classList.remove('opacity-0', '-translate-y-2');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', '-translate-y-2');
+    }, 3500);
+  }
+
+  // 2. Tạo bụi ánh sáng vàng bay lơ lửng trên nền
+  function initGoldenParticles() {
+    for (let i = 0; i < 28; i++) {
+      const dot = document.createElement('div');
+      const size = Math.random() * 3 + 1.5;
+      dot.className = 'absolute rounded-full bg-[#ffd700] pointer-events-none';
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.boxShadow = '0 0 6px #ffd700';
+      particlesContainer.appendChild(dot);
+
+      const duration = Math.random() * 6000 + 5000;
+      dot.animate(
+        [
+          { transform: 'translateY(0px) scale(0.8)', opacity: 0 },
+          { transform: `translateY(-${Math.random() * 60 + 40}px) scale(1.2)`, opacity: 0.7, offset: 0.5 },
+          { transform: `translateY(-${Math.random() * 120 + 80}px) scale(0.6)`, opacity: 0 }
+        ],
+        {
+          duration: duration,
+          iterations: Infinity,
+          delay: Math.random() * 5000,
+          easing: 'ease-in-out'
+        }
+      );
+    }
+  }
+
+  // 3. Chuyển động bập bùng cho 2 ngọn đèn thờ & tượng Phật nhẹ nhàng
+  function initAmbientMotion() {
+    [flameLeft, flameRight].forEach((flame, idx) => {
+      if (!flame) return;
+      flame.animate(
+        [
+          { transform: 'scale(1) rotate(-2deg)', opacity: 0.85 },
+          { transform: 'scale(1.12, 1.18) rotate(2deg)', opacity: 1 },
+          { transform: 'scale(0.96, 1.05) rotate(-1deg)', opacity: 0.9 }
+        ],
+        {
+          duration: 1400 + idx * 300,
+          iterations: Infinity,
+          direction: 'alternate',
+          easing: 'ease-in-out'
+        }
+      );
+    });
+
+    if (buddhaStatue) {
+      buddhaStatue.animate(
+        [
+          { transform: 'translateY(0px)' },
+          { transform: 'translateY(-6px)' },
+          { transform: 'translateY(0px)' }
+        ],
+        {
+          duration: 5000,
+          iterations: Infinity,
+          easing: 'ease-in-out'
+        }
+      );
+    }
+  }
+
+  // 4. Hiệu ứng khói hương bay lên
+  function spawnSmoke() {
+    const smoke = document.createElement('div');
+    smoke.className = 'absolute bottom-0 w-3 h-3 rounded-full pointer-events-none';
+    smoke.style.background = 'radial-gradient(circle, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 70%)';
+    smoke.style.left = `${35 + Math.random() * 30}%`;
+    smokeContainer.appendChild(smoke);
+
+    const driftX = (Math.random() - 0.5) * 35;
+    const anim = smoke.animate(
+      [
+        { transform: 'translate(0, 0) scale(0.7)', opacity: 0.65 },
+        { transform: `translate(${driftX * 0.5}px, -45px) scale(1.6)`, opacity: 0.35, offset: 0.5 },
+        { transform: `translate(${driftX}px, -95px) scale(2.6)`, opacity: 0 }
+      ],
+      {
+        duration: 3800,
+        easing: 'ease-out'
+      }
+    );
+
+    anim.onfinish = () => smoke.remove();
+  }
+
+  // 5. Sự kiện: Thắp Hương
+  btnIncense.addEventListener('click', () => {
+    incenseSticks.classList.remove('opacity-0', 'translate-y-4');
+    incenseSticks.classList.add('opacity-100', 'translate-y-0');
+
+    if (!isIncenseLit) {
+      isIncenseLit = true;
+      showToast('🙏 Đã dâng ba nén tâm hương thanh tịnh.');
+      spawnSmoke();
+      smokeInterval = setInterval(spawnSmoke, 550);
+    } else {
+      showToast('🔥 Hương trầm đang tỏa ngát không gian.');
+    }
+  });
+
+  // 6. Sự kiện: Dâng Hoa Sen
+  btnLotus.addEventListener('click', () => {
+    lotusLeft.classList.remove('opacity-0', 'scale-50');
+    lotusRight.classList.remove('opacity-0', 'scale-50');
+    lotusLeft.classList.add('opacity-100', 'scale-100');
+    lotusRight.classList.add('opacity-100', 'scale-100');
+
+    if (!isLotusOffered) {
+      isLotusOffered = true;
+      showToast('🪷 Đã dâng đôi liên hoa thanh khiết cúng dường.');
+    } else {
+      showToast('🪷 Đôi hoa sen đã nở rộ trang nghiêm trên bàn thờ.');
+    }
+  });
+
+  // 7. Âm thanh tiếng chuông chùa ngân vang (Web Audio API)
+  function playTempleBellSound() {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AudioCtx();
+    const now = ctx.currentTime;
+
+    // Các tần số hòa âm tạo tiếng chuông đồng trầm ấm
+    const harmonics = [
+      { freq: 220, gain: 0.45, decay: 5.5 },   // Âm nền trầm
+      { freq: 440, gain: 0.25, decay: 4.0 },   // Bậc 8
+      { freq: 659.25, gain: 0.15, decay: 3.0 }, // Quãng 5
+      { freq: 880, gain: 0.1, decay: 2.2 }     // Âm vang cao
+    ];
+
+    harmonics.forEach((h) => {
+      const osc = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(h.freq, now);
+
+      gainNode.gain.setValueAtTime(0.001, now);
+      gainNode.gain.exponentialRampToValueAtTime(h.gain, now + 0.03);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + h.decay);
+
+      osc.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + h.decay);
+    });
+  }
+
+  // Sự kiện: Thỉnh Chuông
+  btnBell.addEventListener('click', () => {
+    playTempleBellSound();
+    showToast('🔔 Tiếng chuông ngân vang, phiền não nhẹ tan...');
+
+    // Hiệu ứng gợn sóng hào quang khi thỉnh chuông
+    const ripple = document.createElement('div');
+    ripple.className = 'fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full border-2 border-[#ffd700]/70 pointer-events-none z-10';
+    document.body.appendChild(ripple);
+
+    const anim = ripple.animate(
+      [
+        { transform: 'translate(-50%, -50%) scale(0.8)', opacity: 0.9 },
+        { transform: 'translate(-50%, -50%) scale(3.5)', opacity: 0 }
+      ],
+      { duration: 2200, easing: 'ease-out' }
+    );
+    anim.onfinish = () => ripple.remove();
+  });
+
+  // 8. Sự kiện: Gửi Lời Nguyện (bay lên trời như đèn trời)
+  prayerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = prayerInput.value.trim();
+    if (!text) return;
+
+    // 1. Lưu ngay vào lịch sử trước khi xóa ô nhập
+    savePrayerToHistory(text);
+
+    showToast('✨ Lời nguyện của bạn đã được gửi lên với lòng thành kính.');
+    prayerInput.value = '';
+
+    // Tạo thẻ lời nguyện bay nhẹ lên trên
+    const wishEl = document.createElement('div');
+    wishEl.textContent = `🙏 "${text}"`;
+    wishEl.className = 'fixed bottom-32 left-1/2 -translate-x-1/2 z-30 px-4 py-1.5 rounded-full bg-[#2e1507]/90 border border-[#ffd700]/50 text-[#ffe885] text-xs md:text-sm italic shadow-[0_0_15px_rgba(255,215,0,0.4)] whitespace-nowrap pointer-events-none';
+    document.body.appendChild(wishEl);
+
+    const anim = wishEl.animate(
+      [
+        { transform: 'translate(-50%, 0px) scale(0.95)', opacity: 0 },
+        { transform: 'translate(-50%, -30px) scale(1)', opacity: 1, offset: 0.15 },
+        { transform: 'translate(-50%, -260px) scale(0.9)', opacity: 0 }
+      ],
+      {
+        duration: 5500,
+        easing: 'ease-out'
+      }
+    );
+
+    anim.onfinish = () => wishEl.remove();
+  });
+
+    // --- PHẦN CẢI TIẾN 1: THANH CÔNG CỤ TIỆN ÍCH ---
+  const btnAmbientAudio = document.getElementById('btnAmbientAudio');
+  const btnToggleJade = document.getElementById('btnToggleJade');
+  const btnZenMode = document.getElementById('btnZenMode');
+  const footerPanel = document.querySelector('footer');
+
+  let ambientCtx = null;
+  let isAmbientPlaying = false;
+  let isJadeMode = false;
+  let isZenMode = false;
+
+    // 1. Tạo âm thanh nền thiền định trầm ấm (Solfeggio 174Hz, 432Hz & 528Hz)
+  function toggleAmbientSound() {
+    if (!isAmbientPlaying) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      ambientCtx = new AudioCtx();
+
+      const freqs = new Array(174, 432, 528);
+      freqs.forEach((f, i) => {
+        const osc = ambientCtx.createOscillator();
+        const gain = ambientCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, ambientCtx.currentTime);
+        gain.gain.setValueAtTime(i === 0 ? 0.04 : 0.015, ambientCtx.currentTime);
+
+        osc.connect(gain);
+        gain.connect(ambientCtx.destination);
+        osc.start();
+      });
+
+      isAmbientPlaying = true;
+      btnAmbientAudio.textContent = '🔊';
+      showToast('🎶 Đã bật âm thanh thiền định tĩnh tâm.');
+    } else {
+      if (ambientCtx) {
+        ambientCtx.close();
+        ambientCtx = null;
+      }
+      isAmbientPlaying = false;
+      btnAmbientAudio.textContent = '🔇';
+      showToast('🔇 Đã tắt âm thanh nền.');
+    }
+  }
+
+  btnAmbientAudio.addEventListener('click', toggleAmbientSound);
+
+  // 2. Chuyển đổi Tượng Vàng Ròng / Tượng Bạch Ngọc
+  btnToggleJade.addEventListener('click', () => {
+    isJadeMode = !isJadeMode;
+    buddhaStatue.classList.toggle('jade-mode', isJadeMode);
+    showToast(isJadeMode ? '💎 Đã chuyển sang tôn tượng Bạch Ngọc thanh khiết.' : '✨ Đã chuyển về tôn tượng Vàng Ròng trang nghiêm.');
+  });
+
+  // 3. Chế độ Tĩnh tâm (Ẩn/Hiện thanh điều khiển dưới)
+  btnZenMode.addEventListener('click', () => {
+    isZenMode = !isZenMode;
+    footerPanel.classList.toggle('zen-hidden', isZenMode);
+    btnZenMode.textContent = isZenMode ? '🙈' : '👁️';
+    showToast(isZenMode ? '🧘 Đã bật chế độ Tĩnh tâm chiêm bái.' : '🙏 Đã hiện lại bảng điều khiển hành lễ.');
+  });
+
+    // --- PHẦN CẢI TIẾN 2: GÕ MÕ TỤNG KINH & BỘ ĐẾM NIỆM PHẬT ---
+    const btnWoodenFish = document.getElementById('btnWoodenFish');
+    const chantCountEl = document.getElementById('chantCount');
+    const btnResetCount = document.getElementById('btnResetCount');
+
+    // Lấy số biến đã lưu từ trước trong trình duyệt
+    let chantCount = parseInt(localStorage.getItem('buddha_chant_count') || '0', 10);
+    chantCountEl.textContent = chantCount;
+
+    // Hàm tăng số biến niệm Phật & tạo hiệu ứng chữ bay
+    function incrementChant() {
+      chantCount += 1;
+      chantCountEl.textContent = chantCount;
+      localStorage.setItem('buddha_chant_count', chantCount.toString());
+
+      // Hiệu ứng nảy số
+      chantCountEl.classList.remove('count-bump');
+      void chantCountEl.offsetWidth;
+      chantCountEl.classList.add('count-bump');
+
+      // Tạo dòng chữ "Nam Mô A Di Đà Phật" bay nhẹ lên từ nút Gõ Mõ
+      const floatingText = document.createElement('div');
+      floatingText.textContent = 'Nam Mô A Di Đà Phật 🙏';
+      floatingText.className = 'fixed bottom-40 left-1/2 -translate-x-1/2 z-30 text-[#ffd700] text-xs md:text-sm font-semibold tracking-wider drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] pointer-events-none whitespace-nowrap';
+      document.body.appendChild(floatingText);
+
+      const randomX = (Math.random() - 0.5) * 60;
+      const anim = floatingText.animate(
+        new Array(
+          { transform: 'translate(-50%, 0px) scale(0.9)', opacity: 0.95 },
+          { transform: `translate(calc(-50% + ${randomX}px), -90px) scale(1.05)`, opacity: 0 }
+        ),
+        { duration: 1600, easing: 'ease-out' }
+      );
+      anim.onfinish = () => floatingText.remove();
+    }
+
+    // Hàm tạo âm thanh tiếng Mõ gỗ trầm ấm (Web Audio API)
+    function playWoodenFishSound() {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioCtx();
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+
+      // Tần số đặc trưng của tiếng mõ gỗ rỗng ruột
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(340, now);
+      osc.frequency.exponentialRampToValueAtTime(145, now + 0.08);
+
+      gainNode.gain.setValueAtTime(0.01, now);
+      gainNode.gain.linearRampToValueAtTime(0.55, now + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+      osc.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.24);
+    }
+
+    // Sự kiện bấm nút Gõ Mõ
+    btnWoodenFish.addEventListener('click', () => {
+      playWoodenFishSound();
+      incrementChant();
+    });
+
+    // Sự kiện đặt lại bộ đếm về 0
+    btnResetCount.addEventListener('click', () => {
+      chantCount = 0;
+      chantCountEl.textContent = '0';
+      localStorage.setItem('buddha_chant_count', '0');
+      showToast('📿 Đã đặt lại bộ đếm niệm Phật về 0.');
+    });
+
+    // --- PHẦN CẢI TIẾN 3: SỔ VÀNG LƯU LỜI CẦU NGUYỆN ---
+    const btnPrayerBook = document.getElementById('btnPrayerBook');
+    const prayerModal = document.getElementById('prayerModal');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+    const prayerList = document.getElementById('prayerList');
+    const btnClearPrayers = document.getElementById('btnClearPrayers');
+
+    // Lấy danh sách lời nguyện đã lưu trong trình duyệt
+    function getSavedPrayers() {
+      try {
+        const raw = localStorage.getItem('buddha_saved_prayers');
+        return raw ? JSON.parse(raw) : new Array();
+      } catch (e) {
+        return new Array();
+      }
+    }
+
+    // Lưu thêm một lời nguyện mới
+    function savePrayerToHistory(text) {
+      const list = getSavedPrayers();
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) +
+                      ' - ' + now.toLocaleDateString('vi-VN');
+      list.unshift({ text: text, time: timeStr });
+      localStorage.setItem('buddha_saved_prayers', JSON.stringify(list));
+    }
+
+    // Hiển thị danh sách lên hộp thoại
+    function renderPrayerList() {
+      const list = getSavedPrayers();
+      prayerList.innerHTML = '';
+
+      if (list.length === 0) {
+        prayerList.innerHTML = '<p class="text-center text-[#a88b68] italic py-6">Chưa có lời cầu nguyện nào được lưu giữ.</p>';
+        return;
+      }
+
+      list.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'p-3 rounded-xl bg-black/40 border border-[#d4af37]/30 flex flex-col gap-1';
+
+        const content = document.createElement('p');
+        content.className = 'text-[#fceabb] leading-relaxed';
+        content.textContent = `“${item.text}”`;
+
+        const time = document.createElement('span');
+        time.className = 'text-[11px] text-[#a88b68] text-right';
+        time.textContent = item.time;
+
+        card.appendChild(content);
+        card.appendChild(time);
+        prayerList.appendChild(card);
+      });
+    }
+
+    // Mở hộp thoại Sổ Nguyện
+    btnPrayerBook.addEventListener('click', () => {
+      renderPrayerList();
+      prayerModal.classList.remove('hidden');
+      prayerModal.classList.add('flex');
+    });
+
+    // Đóng hộp thoại
+    btnCloseModal.addEventListener('click', () => {
+      prayerModal.classList.add('hidden');
+      prayerModal.classList.remove('flex');
+    });
+
+    // Đóng khi bấm ra vùng tối bên ngoài
+    prayerModal.addEventListener('click', (e) => {
+      if (e.target === prayerModal) {
+        prayerModal.classList.add('hidden');
+        prayerModal.classList.remove('flex');
+      }
+    });
+
+    // Xóa toàn bộ lịch sử lời nguyện
+    btnClearPrayers.addEventListener('click', () => {
+      localStorage.removeItem('buddha_saved_prayers');
+      renderPrayerList();
+      showToast('🗑️ Đã xóa lịch sử lời cầu nguyện.');
+    });
+
+    // Tự động lưu lời nguyện mỗi khi người dùng bấm nút Gửi Nguyện
+    prayerForm.addEventListener('submit', () => {
+      const val = prayerInput.value.trim();
+      if (val) {
+        savePrayerToHistory(val);
+      }
+    });
+
+
+  // Khởi chạy hiệu ứng nền
+  initGoldenParticles();
+  initAmbientMotion();
+});
+	</script>
+</body>
+</html>
